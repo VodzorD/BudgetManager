@@ -1,38 +1,58 @@
-import java.text.NumberFormat;
-import java.util.Scanner;
-
 public class BudgetPurchase
 {
     static private double sumPurchase = 0;
-    private double prise;
+    private double price;
     private String purchaseName;
+
+
+    public BudgetPurchase()
+    {
+        purchaseName = "Non";
+        price = 0;
+    }
+
+    public Double getPrice()
+    {
+        return this.price;
+    }
+    public void setPrice(double value)
+    {
+        this.price = value;
+    }
+    
+    public String getName()
+    {
+        return this.purchaseName;
+    }
+    public void setName(String value)
+    {
+        this.purchaseName = value;
+    }
+
+    public static double getSumPurchase()
+    {
+        return BudgetPurchase.sumPurchase;
+    }
+
 
     public static void mainPurchase(BudgetPurchase purchase)
     {
         byte i = 0;
-        Scanner in = new Scanner(System.in);
+        BudgetPrint prt = new BudgetPrint();
 
         String inPurchase;
 
         while (i != 1)
         {
-            System.out.println();
-            System.out.println("Введите сумму покупки, которую хотите внести:");
-            System.out.println();
-            inPurchase = in.nextLine();
+            System.out.println("\nВведите сумму покупки, которую хотите внести:\n");
+            inPurchase = prt.getIn();
             try
             {
                 double s = Double.parseDouble(inPurchase);
-                purchase.prise = s;
-
-                System.out.println();
-                System.out.println("Введите наименование покупки:");
-                System.out.println();
-            
-                inPurchase = in.nextLine();
-                
+                purchase.price = s;
+                System.out.println("\nВведите наименование покупки:\n");            
+                inPurchase = prt.getIn();
                 purchase.purchaseName = inPurchase;
-
                 i++;
             }
             catch (NumberFormatException e)
@@ -40,39 +60,8 @@ public class BudgetPurchase
                 System.out.printf("\n%s\nНе верный формат ввода покупки.\nВ покупке не могут встречаться буквы.\nПовторите попытку ввода:\n\n", e.getMessage());
             }
         }   
-        BudgetPurchase.sumPurchase += purchase.prise;
-        System.out.printf("Покупка вычтена из бюджета!\n");
-        System.out.println("");
-    }
-
-    public BudgetPurchase()
-    {
-        purchaseName = "Nan";
-        prise = 0;
-    }
-
-    public static double returnPurchaseSum()
-    {
-        return (BudgetPurchase.sumPurchase);
-    }
-
-    public String returnPurchaseName()
-    {
-        return (this.purchaseName);
-    }
-    public double returnPurchasePrise()
-    {
-        return (this.prise);
+        BudgetPurchase.sumPurchase += purchase.price;
+        System.out.printf("Покупка вычтена из бюджета!\n\n");
     }
     
-    public void printPunchasePrise()
-    {
-        var cur = NumberFormat.getCurrencyInstance();
-        System.out.print(cur.format(this.prise));
-    }
-    
-    public void printPunchaseName()
-    {
-        System.out.print(this.purchaseName);
-    }
 }

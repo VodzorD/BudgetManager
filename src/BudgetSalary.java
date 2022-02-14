@@ -1,25 +1,21 @@
-import java.util.Scanner;
-
 public class BudgetSalary
 {
-    private static double sumSalary;
+    private double sumSalary;
 
-    public static void mainSalary(BudgetSalary salary)
+    public void mainSalary()
     {
         
         byte i = 0;
-        Scanner in = new Scanner(System.in);
+        BudgetPrint prt = new BudgetPrint();
         String inSalary;
 
         while (i != 1)
         {
-            System.out.println();
-            System.out.println("Введите зарплату, которую хотите внести:");
-            System.out.println();
-            inSalary = in.nextLine();
+            System.out.println("\nВведите зарплату, которую хотите внести:\n");
+            inSalary = prt.getIn();
             try
             {
-                salary.sumSalary += Double.parseDouble(inSalary);
+                this.sumSalary += Double.parseDouble(inSalary);
                 i++;
             }
             catch (NumberFormatException e)
@@ -27,16 +23,15 @@ public class BudgetSalary
                 System.out.printf("\n%s\nНе верный формат ввода зарплаты.\nВ зарплате не можут встречаться буквы.\nПовторите попытку ввода или выйдите из программы ввода зарплаты при помощи exit:\n\n", e.getMessage());
             }
         }
-        System.out.printf("Зарплата добавлена к бюджету!\n");
-        System.out.println("");
+        System.out.printf("Зарплата добавлена к бюджету!\n\n");
     }
 
     public BudgetSalary()
     {
         sumSalary = 0;
     }
-    public static double returnSumSalary()
+    public double getSumSalary()
     {
-        return (sumSalary);
+        return (this.sumSalary);
     }
 }
