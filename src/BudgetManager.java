@@ -1,21 +1,22 @@
-import java.util.LinkedList;
-
+import java.util.ArrayList;
 
 public class BudgetManager 
 {
     BudgetPrint prt;
     BudgetSalary salary;
-    LinkedList<BudgetPurchase> listOfPurchase;
+    ArrayList<BudgetPurchase> listOfPurchase;
     BudgetPurchase purchase;
     String string;
+    BudgetFileParse file;
+
 
     public BudgetManager()
     {
         prt = new BudgetPrint();
         salary = new BudgetSalary();
-        listOfPurchase = new LinkedList<BudgetPurchase>();
-        purchase = new BudgetPurchase();
+        listOfPurchase = new ArrayList<BudgetPurchase>();
         string = "";
+        file = new BudgetFileParse();
     }
 
     public static void main(String[] args)
@@ -44,7 +45,8 @@ public class BudgetManager
                     salary.mainSalary();
                     break;
                 case "2":
-                    BudgetPurchase.mainPurchase(purchase);
+                    purchase = new BudgetPurchase();
+                    purchase.mainPurchase();
                     listOfPurchase.add(purchase);
                     break;
                 case "3":
@@ -70,13 +72,31 @@ public class BudgetManager
                             break;
                         default:
                             break;
-                    }
-            
+                    }            
+                    break;
+                case "6":
+                    prt.printFileLines(file.getFileLines());
+                    break;
+                case "7":
+                    copyList(file.parseFileToPurchase());;
+                    prt.printList(listOfPurchase);
+                    break;
+                case "8":
                     break;
                 default:
                     System.out.println("\nПовторите попытку ввода пункта меню. Был выбран не верный пункт.");
                     System.out.println("Вы можете вводить только цифры, номирующие пукт меню (1, 2, 3, 4) или exit.\n");
                     break;
             }
-    }    
+    }
+    
+    public void copyList(ArrayList<BudgetPurchase> list)
+    {
+
+        this.listOfPurchase.clear();
+        for (BudgetPurchase elem : list)
+        {
+            this.listOfPurchase.add(elem);
+        }
+    }
 }
