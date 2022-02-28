@@ -1,2 +1,2 @@
-Car 5.15
-Flower 3.25
+Car 4.14
+Flower 3.9

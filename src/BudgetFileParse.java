@@ -10,7 +10,6 @@ public class BudgetFileParse
     private Path filePath;
     private ArrayList<String> list;
 
-
     public BudgetFileParse()
     {
         filePath = getFilePath();
@@ -54,17 +53,39 @@ public class BudgetFileParse
         return Paths.get("./BudgetFile.txt");
     }
 
-    public ArrayList<BudgetPurchase> parseFileToPurchase()
+    private ArrayList<BudgetPurchase> parseFileToPurchase()
     {
-        var newList = new ArrayList<BudgetPurchase>();
-
+        var newFilePurchase = new ArrayList<BudgetPurchase>();
+        BudgetPurchase.setSumPurchase(0);
         for (String str : this.list)
         {
             String[] splitStr = str.split(" ");
-            BudgetPurchase purchase = new BudgetPurchase(splitStr[0], Double.parseDouble(splitStr[1]));
-            newList.add(purchase);
+            BudgetPurchase purchase = new BudgetPurchase();
+            purchase.mainPurchase(splitStr[0], Double.parseDouble(splitStr[1]));
+            newFilePurchase.add(purchase);
+
         }
-        return newList;
+        return newFilePurchase;
     }
 
+    public ArrayList<BudgetPurchase> getFilePurchase()
+    {
+        return parseFileToPurchase();
+    }
+
+    public void writePurchaseToFile(ArrayList<BudgetPurchase> list)
+    {
+        try (FileWriter writer = new FileWriter("BudgetFile.txt", false))
+        {
+            for (BudgetPurchase elem : list)
+            {
+                String str = elem.getName() + " " + elem.getPrice() + '\n';
+                writer.write(str);
+            }
+        }
+        catch(IOException x)
+        {
+            System.out.println(x);
+        }
+    }
 }

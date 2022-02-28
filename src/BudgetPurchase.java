@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 
 public class BudgetPurchase
 {
@@ -11,12 +11,6 @@ public class BudgetPurchase
     {
         purchaseName = "Non";
         price = 0;
-    }
-
-    public BudgetPurchase(String name, double price)
-    {
-        this.purchaseName = name;
-        this.price = price;
     }
 
     public Double getPrice()
@@ -42,6 +36,10 @@ public class BudgetPurchase
         return BudgetPurchase.sumPurchase;
     }
 
+    public static void setSumPurchase(double s)
+    {
+        BudgetPurchase.sumPurchase = s;
+    }
 
     public void mainPurchase()
     {
@@ -70,5 +68,21 @@ public class BudgetPurchase
         }   
         BudgetPurchase.sumPurchase += this.price;
         System.out.printf("Покупка вычтена из бюджета!\n\n");
-    }    
+    }
+    
+    public void mainPurchase(String name, double price)
+    {
+        this.price = price;
+        this.purchaseName = name;
+        BudgetPurchase.sumPurchase += this.price;
+    }
+
+    public static void copyList(ArrayList<BudgetPurchase> enterList, ArrayList<BudgetPurchase> list)
+    {
+        list.clear();
+        for (BudgetPurchase elem : enterList)
+        {
+            list.add(elem);
+        }
+    }
 }

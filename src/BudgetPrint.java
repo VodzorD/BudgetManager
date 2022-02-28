@@ -30,11 +30,11 @@ public final class BudgetPrint
         System.out.println("2. Добавить покупку в таблицу.");
         System.out.println("3. Вывести на экран список покупок.");
         System.out.println("4. Вывести на экран текущий баланс.");
-        System.out.println("5. Вывести отсортированный список покупок по параметру.\n");
-        System.out.println("6. Вывести на экран содержимое файла.\n");
-        System.out.println("7. Загрузить содержисое файла в программу.\n");
+        System.out.println("5. Вывести отсортированный список покупок по параметру.");
+        System.out.println("6. Вывести на экран содержимое файла.");
+        System.out.println("7. Загрузить содержисое файла в программу.");
         System.out.println("8. Загрузить внесенные данные в файл.\n");
-        System.out.println("Exit - Выход из программы.\n");
+        System.out.println("Exit - Выход из программы.");
     }
     
     

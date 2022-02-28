@@ -78,25 +78,16 @@ public class BudgetManager
                     prt.printFileLines(file.getFileLines());
                     break;
                 case "7":
-                    copyList(file.parseFileToPurchase());;
+                    BudgetPurchase.copyList(file.getFilePurchase(), listOfPurchase);
                     prt.printList(listOfPurchase);
                     break;
                 case "8":
+                    file.writePurchaseToFile(listOfPurchase);
                     break;
                 default:
                     System.out.println("\nПовторите попытку ввода пункта меню. Был выбран не верный пункт.");
                     System.out.println("Вы можете вводить только цифры, номирующие пукт меню (1, 2, 3, 4) или exit.\n");
                     break;
             }
-    }
-    
-    public void copyList(ArrayList<BudgetPurchase> list)
-    {
-
-        this.listOfPurchase.clear();
-        for (BudgetPurchase elem : list)
-        {
-            this.listOfPurchase.add(elem);
-        }
     }
 }
